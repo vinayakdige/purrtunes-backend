@@ -13,18 +13,17 @@ async function testConnection() {
   try {
     const { data, error } = await supabase.from('users').select('*').limit(1);
     if (error) {
-      console.error('Supabase connection failed:', error.message);
+      console.error('❌ Supabase connection failed:', error.message);
     } else {
-      console.log(' Supabase connected successfully!');
+      console.log('✅ Supabase connected successfully!');
     }
   } catch (err) {
-    console.error(' Supabase connection error:', err.message);
+    console.error('❌ Supabase connection error:', err.message);
   }
 }
 
-
 // Call test on server start
-testConnection(); 
+testConnection();
 
 // Sample route
 app.get('/users', async (req, res) => {
@@ -35,7 +34,12 @@ app.get('/users', async (req, res) => {
 
 app.get('/', (req, res) => res.send('Server is running...'));
 
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal server error' });
+});
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
