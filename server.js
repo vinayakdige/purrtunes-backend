@@ -24,7 +24,7 @@ async function testConnection() {
 
 
 // Call test on server start
-testConnection();
+testConnection(); 
 
 // Sample route
 app.get('/users', async (req, res) => {
