@@ -12,7 +12,7 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3000
-      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_URL: https://turrndwwcxiawzpkzrbt.supabase.co
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
